@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Book Details
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card-group">
+            <div class="card bg-primary">
+                    <div class="card-body text-center">
+                            <img class="card-img-top" src="{{ object.image.url }}" alt="Card image" style="width:50%">
+                    </div>
+            </div>
+
+            <div class="card bg-warning">
+                    <div class="card-body text-center">
+                        <h2>Title: </h2><p>{{object.name}}</p>
+                        <h2>Author: {{object.author}}</h2>
+                        <h2>Pages: {{ object.pages }}</h2>
+                    </div>
+            </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
