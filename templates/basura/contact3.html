@@ -1,0 +1,109 @@
+{% extends 'base0.html' %}
+{% load static %}
+
+{% block content %}
+<div class="contact-title">
+    <h1>Say Hello</h1>
+    <h2>We are always ready to serve you!</h2>
+</div>
+<div class="contact-form">
+        <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-info btn-block" type="submit">Send</button>
+        </form>
+</div>
+
+
+
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background: linear-gradient(rgba(0, 0, 150, 0.5),rgba(0, 0, 50, 0.5));
+        background-image:url("{% static 'img/contact.jpg' %}");
+        background-size:cover;
+        background-position: center;
+        font-family: sans-serif;
+    }
+    .contact-title{
+
+
+
+        margin-top:100px;
+        
+
+        color:#fff;
+        text-transform: uppercase;
+        transition: all 4s ease-in-out;
+    }
+    .contact-title h1{
+        font-size: 32px;
+        line-height: 10px;
+    }
+    .contact-title h2{
+        font-size: 16px;
+    }
+    form{
+        margin-top: 50px;
+        transition: all 4s ease-in-out;
+    }
+    .form-control{
+        width:600px;
+        background:transparent;
+        border:none;
+        outline:none;
+        border-bottom: 1px solid gray;
+        color:#fff;
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    input{
+        height: 45px;
+    }
+
+
+
+</style>
+{% endblock %}
+{% block scripts %}
+
+
+
+<script> 
+$(document).ready(function(){
+
+        $(".contact-title").animate({
+            height: '30px',
+            width: '350px'
+        });
+
+});
+</script>
+
+<script>
+        $(document).ready(function(){
+          var resultado= $('#resultado');
+          $(".btn-primary").click(function(){
+              resultado.animate({
+                left:'250px',
+                opacity:'0.5',
+                height:'+=150px',
+                width:'+=150px'
+              },3000,function(){
+                resultado.animate({
+                  left:'50px',
+                  opacity:'1',
+                  height:'-=150px',
+                  width:'-=150px'
+              },1000);
+            });
+          });
+        });
+        
+        </script>
+
+
+{% endblock %}

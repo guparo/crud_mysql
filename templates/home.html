@@ -1,101 +1,46 @@
 <!-- templates/home.html-->
 {% extends 'base0.html' %}
 {% load static %}
-
+<div class="container">
+    {% block title %}
+       We are doing 
+    {% endblock %}
 {% block content %}
 
-  <div class="jumbotron  text-center jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">We are doing        </h1>
-      </div>
-  </div>   
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3">
-                <div class="card bg-light mb-3" style="max-width: 10rem;">
-                        <img class="card-img-top" src="{% static 'img/smartp.png' %}" alt="Card image">
-                        <div class="card-body">
-                          <h4 class="card-title">Mobile</h4>
-                 <!--         <a href="#" class="btn btn-primary">See Profile</a>-->
-                        </div>
-                </div>   
+<div class="overlay"></div>
+<video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+  <source src="{% static 'mp4/bg.mp4' %}" type="video/mp4"></video>
 
-          </div>
+<div class="masthead">
+  <div class="masthead-bg"></div>
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-12 my-auto">
+        <div class="masthead-content text-white py-5 py-md-0">
+          <h1 class="mb-3">Coming Soon!</h1>
+          <p class="mb-5">We're working hard to finish the development of this site. Our target launch date is
+            <strong>January 2019</strong>! Sign up for updates using the form below!</p>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    {% if user.is_authenticated %}
+                    Hi {{ user.username }}!
+                    <button class='btn btn-secondary btn-default' onclick="location.href='{% url 'logout' %}'" >Logout</button>
 
-          <div class="col-sm-3">
-                <div class="card bg-light mb-3" style="max-width: 10rem;">
-                        <img class="card-img-top" src="{% static 'img/cloud3.png' %}" alt="Card image">
-                        <div class="card-body">
-                          <h4 class="card-title">Web</h4>
-                        </div>
-                </div>
-        </div>
-
-        <div class="col-sm-3">
-                <div class="card bg-light mb-3" style="max-width: 10rem;">
-                        <img class="card-img-top" src="{% static 'img/enter.jpg' %}" alt="Card image">
-                        <div class="card-body">
-                          <h4 class="card-title">Enterprise</h4>
-                        </div>
-                </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="card bg-light mb-3" style="max-width: 10rem;">
-                  <img class="card-img-top" src="{% static 'img/robot.jpg' %}" alt="Card image">
-                  <div class="card-body">
-                    <h4 class="card-title">A I</h4>
+                    {% else %}
+                    <button class='btn btn-secondary btn-default' onclick="location.href='{% url 'login' %}'" >LOGIN</button>
+                    <button class='btn btn-secondary btn-default' onclick="location.href='{% url 'create_user' %}'" >SIGN UP </button>
+                 <hr>
                   </div>
-          </div>
-        </div>
-
+            </div>
+ 
+            {% endif %}              
         </div>
       </div>
-
-      <div class="container">
-        <div class="card-group">
-                <div class="card bg-default">
-                        <div class="card-body text-center">
-                                <img class="card-img-top" src="{% static 'img/bis_1.jpg' %}" alt="Card image" style="width:100%">
-                        </div>
-                </div>
-    
-                <div class="card bg-default">
-                        <div class="card-body text-center">
-<h2>blaaaaaaaa</h2>
-                        </div>
-                </div>
-    
-        </div>
     </div>
+  </div>
+</div>
 
-<div class="jumbotron p-0">
-
-        <!-- Card image -->
-        <div class="view overlay rounded-top">
-          <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(134).jpg" class="img-fluid" alt="Sample image">
-          <a href="#">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-      
-        <!-- Card content -->
-        <div class="card-body text-center mb-3">
-      
-          
-          {% if user.is_authenticated %}
-                Hi {{ user.username }}!
-                <p><a href="{% url 'logout' %}">logout</a></p>
-                {% else %}
-                <h3 class="card-title h3 my-4"><strong>You are not logged in</strong></h3>
-                <a href="{% url 'login' %}" class="btn purple-gradient btn-rounded mb-4">login</a>
-            {% endif %}
-
-      
-        </div>
-      
-      </div>
-
-
-
+{% endblock %}
+{% block scripts %}
 
 {% endblock %}

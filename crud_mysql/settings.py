@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books',
+    'myusers',
+    
 ]
 
 MIDDLEWARE = [
@@ -137,5 +139,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # my_project/settings.py
-LOGIN_REDIRECT_URL = '/book_list'
+LOGIN_REDIRECT_URL = '/chart/'
+
+#LOGIN_REDIRECT_URL = '/book_list'
+
 LOGOUT_REDIRECT_URL = 'home'

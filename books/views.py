@@ -1,11 +1,6 @@
-#import io
-# from django.http import FileResponse
-
 
 from .render import Render
 from django.utils import timezone
-
-
 
 from django.conf import settings
 from io import BytesIO
@@ -19,9 +14,10 @@ from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from books.models import Book
+from books.models import Book, Contact
 from .models import Passenger
 
+from .forms import ContactForm
 
 class ReportePersonasPDF(View):
 
@@ -36,9 +32,6 @@ class ReportePersonasPDF(View):
             pdf.drawString(230, 790, u"PYTHON PDF")
             pdf.setFont("Helvetica", 14)
             pdf.drawString(200, 770, u"REPORTE DE PERSONAS")
-
-
-
             
     def get(self, request, *args, **kwargs):
             #Indicamos el tipo de contenido a devolver, en este caso un pdf
@@ -57,13 +50,10 @@ class ReportePersonasPDF(View):
             response.write(pdf)
             return response
 
-
-
-class Pdf(View):
+class bookPdf(View):
 
     def get(self, request):
         book = Book.objects.all()
-    #    model = Book
 
         today = timezone.now()
         params = {
@@ -71,7 +61,7 @@ class Pdf(View):
             'book': book,
             'request': request
         }
-        return Render.render('pdf.html', params)
+        return Render.render('books/book_pdf.html', params)
 
 
 def chart(request):
@@ -80,7 +70,7 @@ def chart(request):
         .annotate(survived_count=Count('ticket_class', filter=Q(survived=True)),
                   not_survived_count=Count('ticket_class', filter=Q(survived=False))) \
         .order_by('ticket_class')
-    return render(request, 'books/chart.html', {'dataset': dataset})
+    return render(request, 'chart/chart.html', {'dataset': dataset})
 
 class BookList(ListView):
     model = Book
@@ -102,4 +92,21 @@ class BookDelete(DeleteView):
     model = Book
     #messages.add_message(request, messages.INFO, 'Data Delete Successfully')
     success_url = reverse_lazy('book_list')
- 
+
+class ContactCreate(CreateView):
+    model = Contact
+    template_name="contact/contact_form.html"
+    fields = ['first_name','last_name', 'email','message']
+    success_url = reverse_lazy('home')
+
+class PassengerCreate(CreateView):
+    model = Passenger
+    template_name="chart/passenger_form.html"
+    fields = ['name', 'survived','ticket_class']
+    success_url = reverse_lazy('chart')
+
+class PassengerList(ListView):
+    model = Passenger
+class ContactList(ListView):
+    model = Contact
+#    template_name = "contact/contact_list.html"

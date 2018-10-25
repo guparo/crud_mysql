@@ -37,19 +37,17 @@ Book List
 <tbody>
     {% for book in object_list %}
     <tr>
-    <td>{{ book.id }}</td>
-    <td>{{ book.name }}</td>
+        <td>{{ book.id }}</td>
+        <td>{{ book.name }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.pages }}</td>
+    
+        <td><img src= "{{ book.image.url }}" class="img-responsive" width="42" height="42" alt="no imagen"></td> 
 
-    <td>{{ book.author }}</td>
-
-    <td>{{ book.pages }}</td>
+        <td><button class='btn  btn-sm' onclick="location.href='{% url 'book_view' book.id %}'"   style='background-color:transparent;'><i class="fa fa-th-large"></i> </button></td>
+        <td><button class='btn  btn-sm' onclick="location.href='{% url 'book_edit' book.id %}'"   style='background-color:transparent;'><i class="fa fa-pencil"></i> </button></td>
+        <td><button class='btn  btn-sm' onclick="location.href='{% url 'book_delete' book.id %}'" style='background-color:transparent;'><i class="fa fa-trash"></i></button></td>
  
-
-    <td><img src= "{{ book.image.url }}" class="img-responsive" width="42" height="42" alt="no imagen"></td> 
-
-    <td><a href="{% url "book_view" book.id %}">view</a></td>
-    <td><a href="{% url "book_edit" book.id %}">edit</a></td>
-    <td><a href="{% url "book_delete" book.id %}">delete</a></td>
     </tr>
     {% endfor %}
 </tbody>

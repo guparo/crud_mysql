@@ -13,3 +13,18 @@ How to Integrate Highcharts.js with Django
 
 https://codeburst.io/django-render-html-to-pdf-41a2b9c41d16
 Django — render HTML to PDF
+
+https://www.mastercode.online/courses/tutorial/basic-contact-app-in-django/
+Basic Contact App In Django
+
+https://www.youtube.com/watch?v=fmuiuBP0Gl8
+How To Django: Blog Application - How To Style Forms in Django
+
+https://www.youtube.com/watch?v=52pEihWDQ9A
+Bootstrap 4 - responsive contact for
+
+https://www.youtube.com/watch?v=yV04ko40AQE
+ Curso Django - Crear Registro de Usuarios (modelo)
+
+ https://startbootstrap.com/template-overviews/coming-soon/
+ Coming Soon

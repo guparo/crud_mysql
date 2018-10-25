@@ -1,0 +1,224 @@
+<!-- templates/home.html-->
+{% extends 'base0.html' %}
+{% load static %}
+<div class="container">
+    {% block title %}
+       We are doing 
+    {% endblock %}
+{% block content %}
+
+
+
+
+
+        <div class="row">
+          <div class="col-sm-3">
+                <div  class="card bg-light mb-3" style="max-width: 10rem;">
+                        <img id="idimg1" class="card-img-top" src="{% static 'img/smartp.png' %}" alt="Card image">
+                        <div class="card-body">
+                          <h4 class="card-title">Mobile</h4>
+                 <!--         <a href="#" class="btn btn-primary">See Profile</a>-->
+                        </div>
+                </div>   
+
+          </div>
+
+          <div class="col-sm-3">
+                <div id="idimg2" class="card bg-light mb-3" style="max-width: 10rem;">
+                        <img class="card-img-top" src="{% static 'img/cloud3.png' %}" alt="Card image">
+                        <div class="card-body">
+                          <h4 class="card-title">Web</h4>
+                        </div>
+                </div>
+        </div>
+
+        <div  class="col-sm-3">
+                <div  class="card bg-light mb-3" style="max-width: 10rem;">
+                        <img id="idimg3" class="card-img-top" src="{% static 'img/enter.jpg' %}" alt="Card image">
+                        <div class="card-body">
+                          <h4 class="card-title">Enterprise</h4>
+                        </div>
+                </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card bg-light mb-3" style="max-width: 10rem;">
+                  <img class="card-img-top" src="{% static 'img/robot.jpg' %}" alt="Card image">
+                  <div class="card-body">
+                    <h4 class="card-title">A I</h4>
+                  </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+        <div class="card-body text-center mb-3">
+      
+          
+          {% if user.is_authenticated %}
+                Hi {{ user.username }}!
+                <p><a href="{% url 'logout' %}">logout</a></p>
+                {% else %}
+                <h3 class="card-title h3 my-4"><strong>You are not logged in</strong></h3>
+                <a href="{% url 'login' %}" class="btn purple-gradient btn-rounded mb-4">Login</a>
+                <a href="{% url 'create_user' %}" class="btn purple-gradient btn-rounded mb-4">Register</a>
+
+            {% endif %}
+
+      
+        </div>
+      
+
+{% endblock %}
+{% block scripts %}
+
+<script>
+$(document).ready(function(){
+  var resultado= $('#resultado');
+  $(".btn-primary").click(function(){
+      resultado.animate({
+        left:'250px',
+        opacity:'0.5',
+        height:'+=150px',
+        width:'+=150px'
+      },3000,function(){
+        resultado.animate({
+          left:'50px',
+          opacity:'1',
+          height:'-=150px',
+          width:'-=150px'
+      },1000);
+    });
+  });
+});
+</script>
+
+<script>
+  $(document).ready (function(){
+    var resultado = $('#idimg2')
+    $('#idimg2').hover(function(){
+        resultado.animate({
+        left:'50px',
+        height:'+=250px',
+        width:'+=250px'
+      });
+    },function(){
+      resultado.animate({
+        left:'50px',
+        height:'-=150px',
+        width:'-=150px'
+      });
+    });
+  });
+</script>
+
+
+
+<script>
+    $(document).ready (function(){
+      var hoverSize = [300, 300];
+      $('#idimg1').hover(function(){
+        $('#idimg1').css({
+          height:hoverSize[0],
+          width:hoverSize[1]
+
+        });
+
+
+
+
+      },function(){
+        $('#idimg1').css({
+          height:"",
+          width:""
+        });
+      });
+    });
+  </script>
+
+  <script>
+      $(document).ready (function(){
+  //      var hoverSize = [100, 400];
+        var hoverSize = $('#idimg3')
+        $('#idimg3').hover(function(){
+          $('#idimg3').css({
+            height:hoverSize[0],
+            width:hoverSize[1]
+          });
+        },function(){
+          $('#idimg3').css({
+            height:"",
+            width:""
+          });
+        });
+      });
+    </script>
+
+
+
+
+
+
+    <script>
+        $('.button').click(function() {
+          $(this).hide();
+          $('.front').addClass('front-open');
+          $('.back').addClass('back-open');
+          $('.opened').addClass('opened-open');
+          $('.modal').show();
+          setTimeout(function() {
+            $('.modal').addClass('shadow');
+          }, 1000);
+          setTimeout(function() {
+            $('.front').removeClass('front-open');
+            $('.back').removeClass('back-open');
+            $('.opened').removeClass('opened-open');
+          }, 1200);
+          $('.wrapper').delay(500).fadeIn();
+        });
+        
+        $('.close').click(function() {
+          $('.wrapper').fadeOut(300);
+          $('.modal').removeClass('shadow');
+          $('.front').addClass('front-close');
+          $('.back').addClass('back-close');
+          $('.opened').addClass('opened-close');
+          setTimeout(function() {
+            $('.modal').hide();
+            $('.button').show();
+            $('.front').removeClass('front-close');
+            $('.back').removeClass('back-close');
+            $('.opened').removeClass('opened-close');
+          }, 1100)
+        })
+        
+        $('.wrapper').click(function() {
+          $('.wrapper').fadeOut(300);
+          $('.modal').removeClass('shadow');
+          $('.front').addClass('front-close');
+          $('.back').addClass('back-close');
+          $('.opened').addClass('opened-close');
+          setTimeout(function() {
+            $('.modal').hide();
+            $('.button').show();
+            $('.front').removeClass('front-close');
+            $('.back').removeClass('back-close');
+            $('.opened').removeClass('opened-close');
+          }, 1100)
+        })
+        </script>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-36251023-1']);
+          _gaq.push(['_setDomainName', 'jqueryscript.net']);
+          _gaq.push(['_trackPageview']);
+        
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        
+        </script>
+{% endblock %}
